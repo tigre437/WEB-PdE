@@ -1,0 +1,48 @@
+/* estilos.css */
+
+/* Tabla general */
+#voluntariosTable {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: Arial, sans-serif;
+}
+
+/* Encabezado */
+#voluntariosTable thead {
+    background-color: #4b535c;
+    color: white;
+}
+
+/* Celdas */
+#voluntariosTable th,
+#voluntariosTable td {
+    padding: 10px;
+    border: 1px solid #ddd;
+    text-align: left;
+}
+
+/* Filas alternas */
+#voluntariosTable tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+/* Hover */
+#voluntariosTable tbody tr:hover {
+    background-color: #f1f1f1;
+}
+
+/* Iconos de acciones */
+.action-btn {
+    cursor: pointer;
+    margin-right: 5px;
+    color: #555;
+    transition: color 0.2s;
+}
+
+.action-btn:hover {
+    color: #000;
+}
+
+.delete:hover {
+    color: red;
+}

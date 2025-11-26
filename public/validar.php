@@ -25,7 +25,9 @@ if (isset($_POST['usuario']) && isset($_POST['password'])) {
         }
     }
 
-    echo "Credenciales incorrectas";
+    header("Location: login.php?error=1");
+    exit;
+
 } else {
     // Si alguien entra directamente a validar.php sin enviar el formulario
     header("Location: login.php");
