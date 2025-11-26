@@ -21,28 +21,45 @@
     text-align: left;
 }
 
+#voluntariosTable tbody tr td:first-child {
+    border-top-left-radius: 8px;
+    border-bottom-left-radius: 8px;
+}
+
+#voluntariosTable tbody tr td:last-child {
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+}
+
 /* Filas alternas */
 #voluntariosTable tbody tr:nth-child(even) {
-    background-color: #f9f9f9;
+    background-color: #54595e;
+    color: #f1f1f1;
 }
 
 /* Hover */
 #voluntariosTable tbody tr:hover {
     background-color: #f1f1f1;
+    color: #333;
+    border-radius: 8px;
+}
+
+tr:hover .action-btn {
+    color: #333;
 }
 
 /* Iconos de acciones */
 .action-btn {
     cursor: pointer;
     margin-right: 5px;
-    color: #555;
+    color: #f1f1f1;
     transition: color 0.2s;
 }
 
-.action-btn:hover {
-    color: #000;
+tr:hover .action-btn:hover {
+    color: #0068df;
 }
 
-.delete:hover {
-    color: red;
+tr:hover .delete:hover {
+    color: #dc2626;
 }

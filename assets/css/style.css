@@ -222,6 +222,7 @@ body {
 .form-group select {
     width: 100%;
     padding: 8px;
+    padding-left: 40px;
     border: 1px solid #ddd;
     border-radius: 4px;
     box-sizing: border-box;

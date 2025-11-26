@@ -36,6 +36,7 @@
                 <div class="form-group">
                     <label for="usuario">Usuario</label>
                     <div class="input-wrapper">
+                        <i class="fas fa-user input-icon"></i>
                         <input 
                             type="text" 
                             id="usuario" 
@@ -45,7 +46,7 @@
                             required
                             autocomplete="username"
                         >
-                        <i class="fas fa-user input-icon"></i>
+                        
                     </div>
                 </div>
 
