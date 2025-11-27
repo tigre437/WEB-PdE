@@ -6,6 +6,13 @@ if (!isset($_SESSION['usuario']) || $_SESSION['rol'] != 2) {
     header("Location: index.php");
     exit;
 }
+
+// Get current admin ID
+$stmt = $conn->prepare("SELECT id FROM usuarios WHERE usuario = ?");
+$stmt->bind_param("s", $_SESSION['usuario']);
+$stmt->execute();
+$res = $stmt->get_result()->fetch_assoc();
+$current_user_id = $res['id'];
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -122,6 +129,37 @@ if (!isset($_SESSION['usuario']) || $_SESSION['rol'] != 2) {
     </div>
 </div>
 
+<!-- Change Password Modal -->
+<div id="changePasswordModal" class="modal">
+    <div class="modal-content" style="max-width: 400px;">
+        <span class="close" onclick="closeModal('changePasswordModal')">&times;</span>
+        <h2>Cambiar Contraseña</h2>
+        <p>Cambiando contraseña para: <strong id="cp_volunteerName"></strong></p>
+        <form id="changePasswordForm">
+            <input type="hidden" id="cp_volunteerId">
+            <div class="form-group">
+                <label>Nueva Contraseña</label>
+                <div class="input-wrapper">
+                    <input type="password" id="cp_newPassword" required minlength="4">
+                    <button type="button" class="toggle-password" onclick="togglePassword('cp_newPassword', this)">
+                        <i class="fas fa-eye"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Confirmar Contraseña</label>
+                <div class="input-wrapper">
+                    <input type="password" id="cp_confirmPassword" required minlength="4">
+                    <button type="button" class="toggle-password" onclick="togglePassword('cp_confirmPassword', this)">
+                        <i class="fas fa-eye"></i>
+                    </button>
+                </div>
+            </div>
+            <button type="submit" class="btn-primary" style="width: 100%; margin-top: 10px;">Guardar Nueva Contraseña</button>
+        </form>
+    </div>
+</div>
+
 <script>
 document.addEventListener('DOMContentLoaded', loadVolunteers);
 
@@ -142,6 +180,7 @@ function loadVolunteers() {
                     <td>
                         <i class="fas fa-eye action-btn" onclick="viewVolunteer(${vol.id})" title="Ver"></i>
                         <i class="fas fa-edit action-btn" onclick="editVolunteer(${vol.id}, '${vol.nombre}', '${vol.apellidos}', '${vol.fecha_nacimiento}', '${vol.dni}', '${vol.telefono}', '${vol.anotaciones}', '${vol.usuario}')" title="Editar"></i>
+                        <i class="fas fa-key action-btn" onclick="openChangePasswordModal(${vol.id}, '${vol.nombre} ${vol.apellidos}')" title="Cambiar Contraseña"></i>
                         <i class="fas fa-trash action-btn delete" onclick="deleteVolunteer(${vol.id})" title="Borrar"></i>
                     </td>
                 `;
@@ -295,7 +334,69 @@ document.getElementById('photoInput').addEventListener('change', function() {
         });
     }
 });
+
+// Password Change Logic
+function openChangePasswordModal(id, nombre) {
+    document.getElementById('changePasswordModal').style.display = 'block';
+    document.getElementById('cp_volunteerId').value = id;
+    document.getElementById('cp_volunteerName').innerText = nombre;
+    document.getElementById('changePasswordForm').reset();
+}
+
+document.getElementById('changePasswordForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    const newPass = document.getElementById('cp_newPassword').value;
+    const confirmPass = document.getElementById('cp_confirmPassword').value;
+    
+    if (newPass !== confirmPass) {
+        alert('Las contraseñas no coinciden');
+        return;
+    }
+    
+    const id = document.getElementById('cp_volunteerId').value;
+    
+    fetch('../functions/admin_cambiar_password.php', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            id: id,
+            nueva_password: newPass
+        })
+    })
+    .then(response => response.json())
+    .then(result => {
+        if(result.success) {
+            alert('Contraseña actualizada correctamente');
+            closeModal('changePasswordModal');
+        } else {
+            alert('Error: ' + result.error);
+        }
+    })
+    .catch(err => {
+        console.error(err);
+        alert('Error de conexión');
+    });
+});
+
+function togglePassword(inputId, btn) {
+    const input = document.getElementById(inputId);
+    const icon = btn.querySelector('i');
+    
+    if (input.type === 'password') {
+        input.type = 'text';
+        icon.classList.remove('fa-eye');
+        icon.classList.add('fa-eye-slash');
+    } else {
+        input.type = 'password';
+        icon.classList.remove('fa-eye-slash');
+        icon.classList.add('fa-eye');
+    }
+}
 </script>
+
 
 </body>
 </html>

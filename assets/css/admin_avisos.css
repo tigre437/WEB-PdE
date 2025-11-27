@@ -1,0 +1,171 @@
+.admin-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.admin-container h1,
+.admin-container p,
+.admin-container h3 {
+    color: #2c3e50;
+}
+
+.aviso-section {
+    background: white;
+    border-radius: 8px;
+    padding: 25px;
+    margin-bottom: 25px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    color: #333;
+}
+
+.aviso-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 15px;
+    border-bottom: 2px solid #f0f0f0;
+    margin-bottom: 20px;
+}
+
+.aviso-title {
+    font-size: 1.4em;
+    font-weight: bold;
+    color: #2c3e50;
+}
+
+.aviso-info {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.info-item {
+    padding: 10px;
+    background: #f8f9fa;
+    border-radius: 5px;
+    color: #2c3e50;
+}
+
+.info-item strong {
+    display: block;
+    color: #666;
+    font-size: 0.9em;
+    margin-bottom: 5px;
+}
+
+.applications-list {
+    margin-top: 20px;
+}
+
+.application-card {
+    background: #f8f9fa;
+    border-left: 4px solid #007bff;
+    padding: 15px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    color: #333;
+}
+
+.application-card div {
+    color: #555;
+    margin: 5px 0;
+}
+
+.application-card.pending {
+    border-left-color: #ffc107;
+}
+
+.application-card.approved {
+    border-left-color: #28a745;
+}
+
+.application-card.rejected {
+    border-left-color: #dc3545;
+}
+
+.application-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.volunteer-name {
+    font-weight: bold;
+    font-size: 1.1em;
+    color: #2c3e50;
+}
+
+.status-badge {
+    padding: 5px 15px;
+    border-radius: 20px;
+    font-size: 0.85em;
+    font-weight: bold;
+}
+
+.status-badge.pendiente {
+    background: #ffc107;
+    color: #000;
+}
+
+.status-badge.aprobado {
+    background: #28a745;
+    color: white;
+}
+
+.status-badge.rechazado {
+    background: #dc3545;
+    color: white;
+}
+
+.application-message {
+    margin: 10px 0;
+    padding: 10px;
+    background: white;
+    border-radius: 5px;
+    font-style: italic;
+    color: #555;
+}
+
+.action-buttons {
+    display: flex;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.btn {
+    padding: 8px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.95em;
+    transition: opacity 0.3s;
+}
+
+.btn:hover {
+    opacity: 0.8;
+}
+
+.btn-approve {
+    background: #28a745;
+    color: white;
+}
+
+.btn-reject {
+    background: #dc3545;
+    color: white;
+}
+
+.no-data {
+    text-align: center;
+    padding: 40px;
+    color: #999;
+}
+
+.no-data i {
+    font-size: 3em;
+    margin-bottom: 15px;
+    display: block;
+}

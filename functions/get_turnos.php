@@ -19,18 +19,20 @@ if ($_SESSION['rol'] == 1) {
 }
 
 // Consulta distinta según rol
-if ($_SESSION['rol'] == 2) {
-    // ADMIN → todos los turnos
-    $sql2 = "SELECT t.fecha, t.hora, p.nombre AS persona
+if ($_SESSION['rol'] >= 2) {
+    // ADMIN → todos los turnos + nombre del voluntario
+    $sql2 = "SELECT t.fecha, t.hora, p.nombre AS persona, u.usuario AS voluntario
              FROM turnos t
              JOIN personas_mayores p ON t.persona_id = p.id
+             JOIN usuarios u ON t.voluntario_id = u.id
              ORDER BY t.fecha, t.hora";
     $stmt2 = $conn->prepare($sql2);
 } else {
     // VOLUNTARIO → solo sus turnos
-    $sql2 = "SELECT t.fecha, t.hora, p.nombre AS persona
+    $sql2 = "SELECT t.fecha, t.hora, p.nombre AS persona, u.usuario AS voluntario
              FROM turnos t
              JOIN personas_mayores p ON t.persona_id = p.id
+             JOIN usuarios u ON t.voluntario_id = u.id
              WHERE t.voluntario_id = ?
              ORDER BY t.fecha, t.hora";
     $stmt2 = $conn->prepare($sql2);
@@ -45,7 +47,12 @@ while ($row = $result2->fetch_assoc()) {
     $start = $row['fecha'] . 'T' . $row['hora'];
     $events[] = [
         'title' => $row['persona'],
-        'start' => $start
+        'start' => $start,
+        'extendedProps' => [
+            'voluntario' => $row['voluntario'],
+            'fecha' => $row['fecha'],
+            'hora' => $row['hora']
+        ]
     ];
 }
 

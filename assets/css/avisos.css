@@ -1,0 +1,144 @@
+.avisos-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.avisos-container h1,
+.avisos-container p {
+    color: #f1f1f1;
+    padding-bottom: 10px;
+}
+
+.aviso-card {
+    background: white;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border-left: 4px solid #ff6b6b;
+    color: #333;
+}
+
+.aviso-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.aviso-title {
+    font-size: 1.3em;
+    font-weight: bold;
+    color: #2c3e50;
+}
+
+.aviso-badge {
+    background: #ff6b6b;
+    color: white;
+    padding: 5px 15px;
+    border-radius: 20px;
+    font-size: 0.9em;
+}
+
+.aviso-details {
+    margin: 15px 0;
+    line-height: 1.8;
+}
+
+.aviso-details div {
+    margin: 5px 0;
+}
+
+.aviso-details strong {
+    color: #555;
+    margin-right: 5px;
+}
+
+.apply-btn {
+    background: #28a745;
+    color: white;
+    border: none;
+    padding: 10px 25px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+    transition: background 0.3s;
+}
+
+.apply-btn:hover {
+    background: #218838;
+}
+
+.apply-btn:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+}
+
+.no-avisos {
+    text-align: center;
+    padding: 60px 20px;
+    color: #999;
+}
+
+.no-avisos i {
+    font-size: 4em;
+    margin-bottom: 20px;
+    display: block;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 10% auto;
+    padding: 30px;
+    border-radius: 8px;
+    width: 90%;
+    max-width: 500px;
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close:hover {
+    color: #000;
+}
+
+textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin: 10px 0;
+    font-family: inherit;
+}
+
+.submit-btn {
+    background: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 25px;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100%;
+    font-size: 1em;
+}
+
+.submit-btn:hover {
+    background: #0056b3;
+}
